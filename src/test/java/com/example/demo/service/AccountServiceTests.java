@@ -3,8 +3,8 @@ package com.example.demo.service;
 import com.example.demo.controller.dto.AccountDto;
 import com.example.demo.controller.dto.AccountResponseDTO;
 import com.example.demo.entity.AccountEntity;
-import com.example.demo.repository.AccountRepository;
-import com.example.demo.repository.UserRepository;
+import com.example.demo.repository.AccountRepositoryH2;
+import com.example.demo.repository.UserRepositoryH2;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,9 +21,9 @@ public class AccountServiceTests {
     @InjectMocks
     AccountService accountService;
     @Mock
-    private AccountRepository accountRepository;
+    private AccountRepositoryH2 accountRepository;
     @Mock
-    private UserRepository userRepository;
+    private UserRepositoryH2 userRepository;
     @Test
     void Given_AUserWithMoreThanFourRegisteredAccounts_When_Invoke_insertAccount_Then_throwRuntimeException() {
         ArrayList<AccountEntity> mock = new ArrayList<>();
