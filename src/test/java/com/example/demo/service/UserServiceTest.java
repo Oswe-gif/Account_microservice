@@ -5,8 +5,8 @@ import com.example.demo.controller.dto.UserDto;
 import com.example.demo.controller.dto.UserResponseDTO;
 import com.example.demo.entity.AccountEntity;
 import com.example.demo.entity.UserEntity;
-import com.example.demo.repository.AccountRepositoryH2;
-import com.example.demo.repository.UserRepositoryH2;
+import com.example.demo.repository.AccountRepository;
+import com.example.demo.repository.UserRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,9 +23,9 @@ class UserServiceTest {
     @InjectMocks
     UserService userService;
     @Mock
-    private UserRepositoryH2 userRepository;
+    private UserRepository userRepository;
     @Mock
-    private AccountRepositoryH2 accountRepository;
+    private AccountRepository accountRepository;
     @Test
     void Given_UserDataInDto_When_Invoke_createUser_Then_Return_UserEntity() {
         UserDto userDto = new UserDto(5,"Pepito","Perez","2025-03-24");
