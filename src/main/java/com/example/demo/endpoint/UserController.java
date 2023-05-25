@@ -1,15 +1,17 @@
-package com.example.demo.controller;
+package com.example.demo.endpoint;
 
-import com.example.demo.controller.dto.AccountResponseDTO;
-import com.example.demo.controller.dto.UserDto;
-import com.example.demo.controller.dto.UserResponseDTO;
+import com.example.demo.endpoint.dto.AccountResponseDTO;
+import com.example.demo.endpoint.dto.UserDto;
+import com.example.demo.endpoint.dto.UserResponseDTO;
 import com.example.demo.service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @RestController
 public class UserController {
     private UserService userService;
@@ -18,8 +20,8 @@ public class UserController {
         return userService.createUser(userDto);
     }
     @GetMapping(path = "/user/check-accounts/{idDocument}")
-    public List<AccountResponseDTO> getAllAccounts(@PathVariable int idDocument) {
-        return userService.consultAccounts(idDocument);
+    public List<AccountResponseDTO> getAllAccounts(@PathVariable UserDto userDto) {
+        return userService.consultAccounts(userDto.getDocument());
     }
     @GetMapping(path = "/user/all-Users")
     public List<UserResponseDTO> getAllUsers() {
