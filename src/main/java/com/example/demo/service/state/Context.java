@@ -1,8 +1,10 @@
 package com.example.demo.service.state;
 
+import lombok.Generated;
 import org.springframework.stereotype.Component;
 
 @Component
+@Generated
 public class Context {
     private IState state;
     public void setState(IState state)

@@ -5,12 +5,13 @@ import com.example.demo.endpoint.dto.UserDto;
 import com.example.demo.endpoint.dto.UserResponseDTO;
 import com.example.demo.service.UserService;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.Generated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @AllArgsConstructor
+@Generated
 @RestController
 public class UserController {
     private UserService userService;

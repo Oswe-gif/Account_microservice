@@ -5,6 +5,7 @@ import com.example.demo.endpoint.dto.UserDto;
 import com.example.demo.service.AccountService;
 import com.example.demo.service.UserService;
 import lombok.AllArgsConstructor;
+import lombok.Generated;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -13,6 +14,7 @@ import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 
 @Component
+@Generated
 @AllArgsConstructor
 public class UserAccountListener {
     private AccountService accountService;

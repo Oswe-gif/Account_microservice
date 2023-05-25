@@ -2,10 +2,11 @@ package com.example.demo.endpoint;
 import com.example.demo.endpoint.dto.*;
 import com.example.demo.service.AccountService;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.Generated;
 import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
+@Generated
 @RestController
 public class AccountController {
     private AccountService accountService;
