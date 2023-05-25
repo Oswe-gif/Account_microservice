@@ -6,18 +6,17 @@ import lombok.NoArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @RestController
 public class AccountController {
     private AccountService accountService;
     @PostMapping(path = "/account/savings-account")
-    public AccountResponseDTO createAccount(@RequestBody AccountDto accountDto) {
-        return accountService.insertAccount(accountDto);
+    public void createAccount(@RequestBody AccountDto accountDto) {
+        accountService.insertAccount(accountDto);
     }
 
-    @GetMapping(path = "/account/check-balance/idAccount")
-    public AccountResponseDTO checkBalance(@RequestBody AccountDto accountDto) {
-        return accountService.checkBalance(accountDto.getId());
+    @GetMapping(path = "/account/check-balance/{idAccount}")
+    public AccountResponseDTO checkBalance(@PathVariable int idAccount) {
+        return accountService.checkBalance(idAccount);
     }
 
 }

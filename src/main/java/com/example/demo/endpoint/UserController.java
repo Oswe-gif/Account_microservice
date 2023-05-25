@@ -11,17 +11,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @RestController
 public class UserController {
     private UserService userService;
     @PostMapping(path = "/user/savings-user")
-    public UserResponseDTO createUser(@RequestBody UserDto userDto){
-        return userService.createUser(userDto);
+    public void createUser(@RequestBody UserDto userDto){
+        userService.createUser(userDto);
     }
     @GetMapping(path = "/user/check-accounts/{idDocument}")
-    public List<AccountResponseDTO> getAllAccounts(@PathVariable UserDto userDto) {
-        return userService.consultAccounts(userDto.getDocument());
+    public List<AccountResponseDTO> getAllAccounts(@PathVariable int idDocument) {
+        return userService.consultAccounts(idDocument);
     }
     @GetMapping(path = "/user/all-Users")
     public List<UserResponseDTO> getAllUsers() {
