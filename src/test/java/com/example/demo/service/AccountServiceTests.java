@@ -5,6 +5,8 @@ import com.example.demo.endpoint.dto.AccountResponseDTO;
 import com.example.demo.entity.AccountEntity;
 import com.example.demo.repository.AccountRepository;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.service.state.Account;
+import com.example.demo.service.state.Context;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,6 +26,9 @@ public class AccountServiceTests {
     private AccountRepository accountRepository;
     @Mock
     private UserRepository userRepository;
+    @Mock
+    private Context context;
+
     @Test
     void Given_AUserWithMoreThanFourRegisteredAccounts_When_Invoke_insertAccount_Then_throwRuntimeException() {
         ArrayList<AccountEntity> mock = new ArrayList<>();
@@ -32,7 +37,10 @@ public class AccountServiceTests {
         mock.add(new AccountEntity(  3,"Ahorro",0,"2025-03-24",1));
         mock.add(new AccountEntity(  4,"Ahorro",0,"2025-03-24",1));
         AccountDto accountDto = new AccountDto(5,"Ahorro",0,"2025-03-24",1);
+        this.context.setState(new Account());
+        context.runState();
         Mockito.when(accountRepository.getAllAccounts(accountDto.getUser())).thenReturn(mock);
+
         Assertions.assertThrows(RuntimeException.class, () -> {
             accountService.insertAccount(accountDto);
         });
@@ -45,6 +53,8 @@ public class AccountServiceTests {
         mock.add(new AccountEntity(  2,"Ahorro",0,"2025-03-24",1));
         AccountDto accountDto = new AccountDto(3,"Ahorro",0,"2025-03-24",1);
         Mockito.when(userRepository.existsById(accountDto.getUser())).thenReturn(false);
+        this.context.setState(new Account());
+        context.runState();
         Assertions.assertThrows(RuntimeException.class, () -> {
             accountService.insertAccount(accountDto);
         });
@@ -74,6 +84,8 @@ public class AccountServiceTests {
     {
         AccountDto accountDto = new AccountDto(1,"Ahorro",0,"2025-03-24",1);
         Mockito.when(accountRepository.existsById(accountDto.getId())).thenReturn(false);
+        this.context.setState(new Account());
+        context.runState();
         Assertions.assertThrows(RuntimeException.class, () -> {
             accountService.checkBalance(accountDto.getId());
         });
