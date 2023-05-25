@@ -33,6 +33,7 @@ public class UserAccountListener {
 
     @RabbitListener(queues = {"accounts"})
     public void createAccount(AccountDto accountDto) {
+
         accountService.insertAccount(accountDto);
     }
 
